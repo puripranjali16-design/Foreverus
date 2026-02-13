@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Valentine Ansh 💌</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom right, #ffd6e0, #fff0f5);
+    text-align: center;
+    color: #6b003f;
+    overflow-x: hidden;
+}
+
+/* PASSWORD SCREEN */
+#passwordScreen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #ffccd5, #ffe6f0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+input {
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid pink;
+    margin-top: 15px;
+    font-size: 16px;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+}
+
+button {
+    background: #ff4d88;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 28px;
+    padding: 0 15px;
+}
+
+.section {
+    padding: 25px 15px;
+}
+
+.bouquet {
+    font-size: 45px;
+}
+
+.letter {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    font-size: 15px;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 18px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-800px); opacity: 0; }
+}
+
+/* POPUP */
+#foreverPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+    <h2>Enter Password to Open Your Valentine Surprise 💖</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock 💌</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="hidden">
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<h1>To My Valentine, Ansh 💖</h1>
+
+<div class="section bouquet">
+🌹 🌷 💐 🌸 🤍
+</div>
+
+<!-- RELATIONSHIP COUNTER -->
+<div class="section">
+    <h2>Our Story Since May 1, 2023 💕</h2>
+    <div id="counter" style="font-size:18px; line-height:1.8;">
+        Loading our love story...
+    </div>
+</div>
+
+<div class="section">
+<p>This bouquet may be virtual, but my love for you is very real.</p>
+</div>
+
+<button onclick="showLetter()">Click to Open Your Letter 💌</button>
+
+<div id="loveLetter" class="letter hidden">
+My dearest Ansh,<br><br>
+On this Valentine’s Day, I just want you to know how special you are to me.
+You are not just my boyfriend, you are my comfort, my safe place, and my biggest smile.<br><br>
+Loving you feels calm, exciting, warm and magical at the same time.<br><br>
+Every moment with you becomes a memory I want to keep forever.<br><br>
+If I could give you the world, I would. But for now, I give you my heart – fully and honestly.<br><br>
+Happy Valentine’s Day, my love.<br><br>
+Always yours 🤍<br>
+– Pranjali
+</div>
+
+<button onclick="openForever()">One Last Question 💕</button>
+
+</div>
+
+<!-- POPUP -->
+<div id="foreverPopup" class="hidden">
+<div style="background:white;padding:25px;border-radius:20px;text-align:center;width:85%;max-width:350px;">
+<h2>Will You Stay Mine Forever? 💍💖</h2>
+<button onclick="sayYes()">Yes, Always 🤍</button>
+<button onclick="sayYes()">Obviously Yes 😌</button>
+</div>
+</div>
+
+<script>
+function checkPassword() {
+    var password = document.getElementById("passwordInput").value;
+    if(password === "foreverus") {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+        document.getElementById("bgMusic").play();
+    } else {
+        document.getElementById("error").innerText = "Wrong password 💔 Try again.";
+    }
+}
+
+function showLetter() {
+    document.getElementById("loveLetter").classList.remove("hidden");
+}
+
+/* RELATIONSHIP COUNTER */
+const startDate = new Date("May 1, 2023 00:00:00").getTime();
+
+function updateCounter() {
+    const now = new Date().getTime();
+    const diff = now - startDate;
+
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    document.getElementById("counter").innerHTML =
+        "<b>" + days + "</b> Days 💖<br>" +
+        "<b>" + (hours % 24) + "</b> Hours ⏳<br>" +
+        "<b>" + (minutes % 60) + "</b> Minutes 🤍<br>" +
+        "<b>" + (seconds % 60) + "</b> Seconds ✨";
+}
+
+setInterval(updateCounter, 1000);
+updateCounter();
+
+/* POPUP FUNCTIONS */
+function openForever() {
+    document.getElementById("foreverPopup").classList.remove("hidden");
+}
+
+function sayYes() {
+    document.getElementById("foreverPopup").innerHTML =
+        "<div style='background:white;padding:30px;border-radius:20px;text-align:center;width:85%;max-width:350px;'>" +
+        "<h2>You are mine. Forever. 💖</h2>" +
+        "<p>I choose you. Today. Tomorrow. Always.</p>" +
+        "</div>";
+
+    for(let i=0; i<40; i++) {
+        createHeart();
+    }
+}
+
+/* FLOATING HEARTS */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => { heart.remove(); }, 6000);
+}
+
+setInterval(createHeart, 600);
+</script>
+
+</body>
+</html>
